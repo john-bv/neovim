@@ -23,6 +23,9 @@ local config = {
 
 require("nvim-tree").setup(config)
 
+vim.keymap.set("n", "<D-b>", "<cmd>NvimTreeToggle<CR>")
+vim.keymap.set("i", "<D-b>", "<cmd>NvimTreeToggle<CR>")
+
 -- Auto-open the tree when nvim is launched with a directory (e.g. `nvim .`)
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function(data)
