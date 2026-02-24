@@ -72,5 +72,6 @@ return {
 	},
 	-- Themes
 	{ 'Shatur/neovim-ayu' },
+	{ 'folke/tokyonight.nvim' },
 	{ 'navarasu/onedark.nvim' },
 }
