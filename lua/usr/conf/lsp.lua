@@ -31,9 +31,9 @@ vim.lsp.enable('lua_ls')
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     local bufnr = args.buf
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition,    { buffer = bufnr })
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration,   { buffer = bufnr })
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references,    { buffer = bufnr })
+    vim.keymap.set('n', 'gd', require('telescope.builtin').lsp_definitions,  { buffer = bufnr })
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration,                        { buffer = bufnr })
+    vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references,   { buffer = bufnr })
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { buffer = bufnr })
     vim.keymap.set('n', 'K',  vim.lsp.buf.hover,         { buffer = bufnr }) -- overridden in rust by rustaceanvim
     vim.keymap.set('n', '<C-k>', vim.lsp.buf.code_action, { buffer = bufnr })

@@ -15,6 +15,7 @@ Or separately:
 ```bash
 make font     # installs JetBrainsMono Nerd Font via Homebrew
 make install  # copies config to ~/.config/nvim/
+make deps     # installs Rust toolchain + rust-analyzer and lua-language-server via Mason
 ```
 
 > After installing the font, set **JetBrainsMono Nerd Font** in your terminal's font settings, otherwise nvim-tree icons will show as question marks.

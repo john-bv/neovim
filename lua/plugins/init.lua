@@ -71,6 +71,33 @@ return {
 			require("usr.conf.99")
 		end,
 	},
+	{
+		'nvim-lualine/lualine.nvim',
+		dependencies = { 'nvim-tree/nvim-web-devicons' },
+		config = function()
+			local function lsp_status()
+				local clients = vim.lsp.get_clients({ bufnr = 0 })
+				if #clients == 0 then return 'no lsp' end
+				local names = {}
+				for _, c in ipairs(clients) do
+					table.insert(names, c.name)
+				end
+				return ' ' .. table.concat(names, ', ')
+			end
+
+			require('lualine').setup({
+				options = { section_separators = '', component_separators = '' },
+				sections = {
+					lualine_a = { 'mode' },
+					lualine_b = { 'branch', 'diff', 'diagnostics' },
+					lualine_c = { lsp_status },
+					lualine_x = { 'filetype' },
+					lualine_y = { 'progress' },
+					lualine_z = { 'location' },
+				},
+			})
+		end,
+	},
 	-- Themes
 	{ 'Shatur/neovim-ayu' },
 	{ 'folke/tokyonight.nvim' },
