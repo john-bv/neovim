@@ -8,12 +8,10 @@ require("mason-lspconfig").setup({
     "vtsls",
     "marksman",
     "phpactor",
-    "sqls",
     "taplo",
     "vue_ls",
     "pyright",
     "jdtls",
-    "gopls",
     "dockerls",
     "docker_compose_language_service",
   },
@@ -73,9 +71,6 @@ vim.lsp.enable('marksman')
 -- PHP LSP
 vim.lsp.enable('phpactor')
 
--- SQL LSP
-vim.lsp.enable('sqls')
-
 -- TOML LSP
 vim.lsp.enable('taplo')
 
@@ -87,24 +82,6 @@ vim.lsp.enable('pyright')
 
 -- Java LSP
 vim.lsp.enable('jdtls')
-
--- Go LSP
-vim.lsp.config('gopls', {
-  settings = {
-    gopls = {
-      gofumpt = true,
-      analyses = { unusedparams = true },
-      hints = {
-        assignVariableTypes = true,
-        compositeLiteralFields = true,
-        functionTypeParameters = true,
-        parameterNames = true,
-        rangeVariableTypes = true,
-      },
-    },
-  },
-})
-vim.lsp.enable('gopls')
 
 -- Docker LSP
 vim.lsp.enable('dockerls')
