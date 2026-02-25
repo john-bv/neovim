@@ -35,6 +35,24 @@ return {
 			require("usr.conf.telescope-tabs")
 		end,
 	},
+	-- Treesitter
+	{
+		'nvim-treesitter/nvim-treesitter',
+		lazy = false,
+		build = ':TSUpdate',
+		config = function()
+			require('nvim-treesitter').install({
+				'svelte', 'javascript', 'typescript', 'html', 'css',
+				'markdown', 'markdown_inline',
+				'php', 'sql', 'toml', 'vue',
+				'python', 'ninja', 'rst',
+				'java',
+				'go', 'gomod', 'gowork', 'gosum',
+				'dockerfile',
+				'lua',
+			})
+		end,
+	},
 	-- LSP
 	{ 'williamboman/mason.nvim' },
 	{ 'williamboman/mason-lspconfig.nvim' },
@@ -98,6 +116,7 @@ return {
 			})
 		end,
 	},
+	{ 'nvim-mini/mini.nvim', version = false },
 	-- Themes
 	{ 'Shatur/neovim-ayu' },
 	{ 'folke/tokyonight.nvim' },

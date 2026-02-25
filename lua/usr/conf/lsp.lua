@@ -4,6 +4,18 @@ require("mason-lspconfig").setup({
   ensure_installed = {
     "rust_analyzer", -- used by rustaceanvim, not enabled via lsp.enable
     "lua_ls",
+    "svelte",
+    "vtsls",
+    "marksman",
+    "phpactor",
+    "sqls",
+    "taplo",
+    "vue_ls",
+    "pyright",
+    "jdtls",
+    "gopls",
+    "dockerls",
+    "docker_compose_language_service",
   },
   automatic_installation = true,
 })
@@ -24,6 +36,79 @@ vim.lsp.config('lua_ls', {
 })
 
 vim.lsp.enable('lua_ls')
+
+-- Svelte LSP
+vim.lsp.enable('svelte')
+
+-- TypeScript/JavaScript LSP
+vim.lsp.config('vtsls', {
+  settings = {
+    typescript = {
+      inlayHints = {
+        parameterNames = { enabled = 'literals' },
+        parameterTypes = { enabled = true },
+        variableTypes = { enabled = false },
+        propertyDeclarationTypes = { enabled = true },
+        functionLikeReturnTypes = { enabled = true },
+        enumMemberValues = { enabled = true },
+      },
+    },
+    javascript = {
+      inlayHints = {
+        parameterNames = { enabled = 'literals' },
+        parameterTypes = { enabled = true },
+        variableTypes = { enabled = false },
+        propertyDeclarationTypes = { enabled = true },
+        functionLikeReturnTypes = { enabled = true },
+        enumMemberValues = { enabled = true },
+      },
+    },
+  },
+})
+vim.lsp.enable('vtsls')
+
+-- Markdown LSP
+vim.lsp.enable('marksman')
+
+-- PHP LSP
+vim.lsp.enable('phpactor')
+
+-- SQL LSP
+vim.lsp.enable('sqls')
+
+-- TOML LSP
+vim.lsp.enable('taplo')
+
+-- Vue LSP
+vim.lsp.enable('vue_ls')
+
+-- Python LSP
+vim.lsp.enable('pyright')
+
+-- Java LSP
+vim.lsp.enable('jdtls')
+
+-- Go LSP
+vim.lsp.config('gopls', {
+  settings = {
+    gopls = {
+      gofumpt = true,
+      analyses = { unusedparams = true },
+      hints = {
+        assignVariableTypes = true,
+        compositeLiteralFields = true,
+        functionTypeParameters = true,
+        parameterNames = true,
+        rangeVariableTypes = true,
+      },
+    },
+  },
+})
+vim.lsp.enable('gopls')
+
+-- Docker LSP
+vim.lsp.enable('dockerls')
+vim.lsp.enable('docker_compose_language_service')
 
 -- Note: rust-analyzer is managed by rustaceanvim, not enabled here
 
