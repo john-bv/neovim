@@ -125,5 +125,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('v', '<C-k>', vim.lsp.buf.code_action, { buffer = bufnr })
     vim.keymap.set('n', '[d', function() vim.diagnostic.goto_prev({ border = "single" }) end, { buffer = bufnr })
     vim.keymap.set('n', ']d', function() vim.diagnostic.goto_next({ border = "single" }) end, { buffer = bufnr })
+    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { buffer = bufnr })
   end,
 })
