@@ -44,7 +44,7 @@ return {
 			require('nvim-treesitter').install({
 				'svelte', 'javascript', 'typescript', 'html', 'css',
 				'markdown', 'markdown_inline',
-				'php', 'sql', 'toml', 'vue',
+				'php', 'toml', 'vue',
 				'python', 'ninja', 'rst',
 				'java',
 				'go', 'gomod', 'gowork', 'gosum',
@@ -52,6 +52,11 @@ return {
 				'lua',
 			})
 		end,
+	},
+	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		opts = {},
 	},
 	-- LSP
 	{ 'williamboman/mason.nvim' },
