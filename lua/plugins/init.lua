@@ -23,10 +23,24 @@ return {
 			{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 		},
 		keys = {
-			{ '<leader>f', '<cmd>Telescope find_files<cr>', desc = 'Find files' },
+			{ '<leader>f', '<cmd>Telescope find_files hidden=true<cr>', desc = 'Find files' },
 			{ '<leader>F', '<cmd>Telescope live_grep<cr>', desc = 'Find in file' },
 			{ '<leader>t', '<cmd>Telescope colorscheme enable_preview=true<cr>', desc = 'Theme picker' },
 		},
+		config = function()
+			require('telescope').setup({
+				defaults = {
+					vimgrep_arguments = {
+						'rg', '--color=never', '--no-heading', '--with-filename',
+						'--line-number', '--column', '--smart-case', '--hidden',
+					},
+				},
+				pickers = {
+					find_files = { hidden = true },
+				},
+			})
+			require('telescope').load_extension('fzf')
+		end,
 	},
 	{
 		'LukasPietzschmann/telescope-tabs',
