@@ -2,7 +2,7 @@ require("mason").setup()
 
 require("mason-lspconfig").setup({
   ensure_installed = {
-    "rust_analyzer", -- used by rustaceanvim, not enabled via lsp.enable
+    "rust_analyzer", -- binary installed for rustaceanvim, not auto-enabled
     "lua_ls",
     "svelte",
     "vtsls",
@@ -16,6 +16,9 @@ require("mason-lspconfig").setup({
     "docker_compose_language_service",
   },
   automatic_installation = true,
+  handlers = {
+    rust_analyzer = function() end, -- rustaceanvim handles this
+  },
 })
 
 -- Lua LSP

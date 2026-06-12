@@ -120,9 +120,14 @@ return {
 			local function lsp_status()
 				local clients = vim.lsp.get_clients({ bufnr = 0 })
 				if #clients == 0 then return 'no lsp' end
+				local seen = {}
 				local names = {}
 				for _, c in ipairs(clients) do
-					table.insert(names, c.name)
+					local key = c.name:gsub('[-_]', '')
+					if not seen[key] then
+						seen[key] = true
+						table.insert(names, c.name)
+					end
 				end
 				return ' ' .. table.concat(names, ', ')
 			end
@@ -141,6 +146,33 @@ return {
 		end,
 	},
 	{ 'nvim-mini/mini.nvim', version = false },
+	{ 'famiu/bufdelete.nvim' },
+	{
+		'akinsho/bufferline.nvim',
+		version = '*',
+		dependencies = { 'nvim-tree/nvim-web-devicons', 'famiu/bufdelete.nvim' },
+		config = function()
+			require('bufferline').setup({
+				options = {
+					mode = 'buffers',
+					separator_style = 'slant',
+					show_buffer_close_icons = true,
+					show_close_icon = false,
+					diagnostics = 'nvim_lsp',
+					close_command = function(bufnr) require('bufdelete').bufdelete(bufnr, true) end,
+					right_mouse_command = function(bufnr) require('bufdelete').bufdelete(bufnr, true) end,
+					offsets = {
+						{
+							filetype = 'NvimTree',
+							text = 'Files',
+							highlight = 'Directory',
+							separator = true,
+						},
+					},
+				},
+			})
+		end,
+	},
 	-- Themes
 	{ 'Shatur/neovim-ayu' },
 	{ 'folke/tokyonight.nvim' },
